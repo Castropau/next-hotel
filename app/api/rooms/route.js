@@ -11,7 +11,7 @@ const pool = new Pool({
 
 
 // Handler to add a room
-export async function POST(request) { // Use POST to match the route for adding rooms
+export async function POST(request) {
   const { room, persons, price, image } = await request.json();
 
   try {
@@ -49,23 +49,10 @@ export async function GET(request) {
   }
 }
 
-// Handler to book a room
-export async function bookRoom(request) {
-  const { roomId, customerName, customerEmail, checkIn, checkOut } = await request.json();
 
-  if (!roomId || !customerName || !customerEmail || !checkIn || !checkOut) {
-    return NextResponse.json({ success: false, message: 'All fields are required' }, { status: 400 });
-  }
 
-  try {
-    await pool.query(
-      'INSERT INTO bookings (room_id, customer_name, customer_email, check_in, check_out) VALUES ($1, $2, $3, $4, $5)',
-      [roomId, customerName, customerEmail, checkIn, checkOut]
-    );
 
-    return NextResponse.json({ success: true }, { status: 201 });
-  } catch (error) {
-    console.error('Database error while booking room:', error);
-    return NextResponse.json({ success: false, message: 'Database error' }, { status: 500 });
-  }
-}
+
+
+
+
