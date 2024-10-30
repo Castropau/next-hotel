@@ -18,10 +18,12 @@ export default function LandingPage() {
   }, [router]);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
+      <div className="flex-grow">
       <Carousel />
       <BookRoom />
+      </div>
       <Footer />
       
     </div>
